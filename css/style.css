@@ -1,0 +1,84 @@
+@font-face {
+    font-family: 'digital';
+    src: url(../fonts/digital.ttf);
+}
+
+
+
+#counting  {
+	font-family: "digital", arial;
+	font-size: 60px;
+	font-weight: 600;
+	color: #16a085;
+}
+.btn-primary {
+    background: #16a085;
+    border: none;
+    /* text-transform: uppercase; */
+}
+
+.btn-primary:hover {
+	color: #fff;
+	background-color: #16a084f7;
+	border: none;
+}
+.btn-primary:focus{
+    outline: none;
+    box-shadow: none;
+}
+.btn-primary:active{
+    outline: none;
+    box-shadow: none;
+    color: #fff;
+	background-color: transparent !important;
+	border-color: transparent !important;
+}
+.btn-check:active + .btn-primary, .btn-check:checked + .btn-primary, .btn-primary.active, .btn-primary:active, .show > .btn-primary.dropdown-toggle {
+	color: #fff;
+	background-color: #0a58ca;
+	border-color: #0a53be;
+}
+
+#age_result span{
+	width: 100px;
+	height: 100px;
+	background: black;
+	color: white;
+	font-size: 40px;
+	text-align: center;
+	padding: 0 20px;
+	border-radius: 5px;
+	font-weight: 800;
+}
+/* Products Box */
+#products_add_box, #m_add_box{
+	display: none;
+}
+#add_p_close,#add_m_close {
+	font-size: 30px;
+	padding: 0;
+	margin: 0;
+	line-height: 0;
+}
+
+/* Member */
+.github i, .facebook i {
+	font-size: 30px;
+	margin: 10px 5px;
+}
+
+
+
+/* ==============
+================== */
+#output span{
+	width: 100px;
+	height: 100px;
+	background: #000;
+	color: #fff;
+	padding: 5px 15px;
+	font-size: 35px;
+	font-weight: 600;
+	margin: 0 5px;
+	border-radius: 5px;
+}
