@@ -38,11 +38,11 @@ const age_result = document.getElementById('age_result')
 age_cal.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    let birth_date = this.querySelector(".birth_date").value;
-    let current_date = this.querySelector(".current_date").value
+   let birth_date = this.querySelector(".birth_date").value;
+   let current_date = this.querySelector(".current_date").value
 
-    let c_date   = new Date(current_date); 
-    let b_date = new Date (birth_date)
+   let c_date   = new Date(current_date); 
+   let b_date = new Date (birth_date)
 
    let date_dif = Math.floor(Math.abs(c_date.getTime() - b_date.getTime()))
 
@@ -57,202 +57,16 @@ age_cal.addEventListener('submit', function (e) {
    let month = t_month - (t_year * 12) 
    let day   = Math.abs(t_day - (t_year * 365) - (month * 30))
 
-
   document.querySelector('.years').innerHTML = t_year;
   document.querySelector('.months').innerHTML = month;
   document.querySelector('.days').innerHTML = day;
-
-   console.log(t_day);
-
 })
 
-// ================= Add Products ==================
-const add_product_btn = document.getElementById('add_product_btn')
-const submit          = document.getElementById('products_form')
-const product_box     = document.getElementById('products_add_box')
-const close_product   = document.getElementById('add_p_close')
-
-add_product_btn.addEventListener('click', function() {
-    product_box.style.display = "block"
-})
-
-close_product.addEventListener('click', function () {
-    product_box.style.display = 'none'
-})
-
-submit.addEventListener('submit', function(e) {
-    e.preventDefault()
-})
-
-const p_list = document.querySelector(".p_list")
-
-const allProducts = [
-    {
-        name  : "T-Shirt",
-        price : 200,
-        sale  : 180,
-        image : "https://dekorabd.com/image/cache/catalog/dekora/Product/T-Shirt/White/BTS-member-White-T-shirt-800x800.jpg.webp"
-    },
-    {
-        name  : "T-Shirt",
-        price : 200,
-        sale  : 180,
-        image : "https://cdn.shopify.com/s/files/1/0564/4081/5810/products/BLACK1.1_1ff996f3-9492-4582-a905-ed3ced9ecaf2_250x250@2x.png?v=1638696983"
-    },
-    {
-        name  : "T-Shirt",
-        price : 200,
-        sale  : 180,
-        image : "https://dekorabd.com/image/cache/catalog/dekora/Product/T-Shirt/White/BTS-member-White-T-shirt-800x800.jpg.webp"
-    },
-    {
-        name  : "T-Shirt",
-        price : 200,
-        sale  : 180,
-        image : "https://cdn.shopify.com/s/files/1/0564/4081/5810/products/BLACK1.1_1ff996f3-9492-4582-a905-ed3ced9ecaf2_250x250@2x.png?v=1638696983"
-    },
-    {
-        name  : "T-Shirt",
-        price : 200,
-        sale  : 180,
-        image : "https://dekorabd.com/image/cache/catalog/dekora/Product/T-Shirt/White/BTS-member-White-T-shirt-800x800.jpg.webp"
-    },
-    {
-        name  : "T-Shirt",
-        price : 200,
-        sale  : 180,
-        image : "https://cdn.shopify.com/s/files/1/0564/4081/5810/products/BLACK1.1_1ff996f3-9492-4582-a905-ed3ced9ecaf2_250x250@2x.png?v=1638696983"
-    },
-    {
-        name  : "T-Shirt",
-        price : 200,
-        sale  : 180,
-        image : "https://dekorabd.com/image/cache/catalog/dekora/Product/T-Shirt/White/BTS-member-White-T-shirt-800x800.jpg.webp"
-    },
-    {
-        name  : "T-Shirt",
-        price : 200,
-        sale  : 180,
-        image : "https://cdn.shopify.com/s/files/1/0564/4081/5810/products/BLACK1.1_1ff996f3-9492-4582-a905-ed3ced9ecaf2_250x250@2x.png?v=1638696983"
-    },
-
-    ]
-    
-
-
-    let dataSet = dataSend ("Products" , allProducts)
-
-    let dataGet = getData ("Products")
-
-    
-
-   dataGet.map((data) => {
-        p_list.innerHTML +=`
-        <div class="col-md-3 product_items my-3">
-        <div class="card text-center">
-            <img src="${data.image}" class="card-img-top" alt="">
-            <div class="card-body">
-                <h5>${data.name}</h5>
-                <p>
-                    <span class="regular_price">${data.price}</span>
-                    <span class="sale_price">${data.sale}</span>
-                </p>
-                <button class="btn btn-success" id="add_to_card">Add To Cart</button>
-            </div>
-        </div>
-    </div>
-        `
-    })
-
- // ================= Add Member ================== //
-
-const member_btn = document.getElementById('member_btn')
-const add_member          = document.getElementById('member_form')
-const m_add_box     = document.getElementById('m_add_box')
-const add_m_close   = document.getElementById('add_m_close')
-
-member_btn.addEventListener('click', function() {
-    m_add_box.style.display = "block"
-})
-
-add_m_close.addEventListener('click', function () {
-    m_add_box.style.display = 'none'
-})
-
-add_member.addEventListener('submit', function(e) {
-    e.preventDefault()
-})
-   const member_items = document.querySelector('.member-items')
-
-const allMember = [
-    {
-        name  : "Asraful Haque",
-        Desi : "Instructor",
-        skill  : "JavaScript",
-        image : "https://cdn.powerpackelements.com/wp-content/uploads/2017/11/Team-memeber-01.png",
-        f_link : "",
-        g_link : ""
-    },
-    {
-        name  : "Rekha Roy",
-        Desi : "Instructor",
-        skill  : "Mern Stack",
-        image : "https://www.team.gsamdani.com/wp-content/uploads/2016/05/tm9.jpg",
-        f_link : "",
-        g_link : ""
-    },
-    {
-        name  : "Rubel Hasan",
-        Desi : "Instructor",
-        skill  : "PHP",
-        image : "https://cdn.powerpackelements.com/wp-content/uploads/2017/11/Team-memeber-01.png",
-        f_link : "",
-        g_link : ""
-    },
-    {
-        name  : "Sanzida Khan",
-        Desi : "Instructor",
-        skill  : "Phython",
-        image : "https://www.team.gsamdani.com/wp-content/uploads/2016/05/tm9.jpg",
-        f_link : "",
-        g_link : ""
-    }
-    
-    ]
-
-    let m_data_send = dataSend ("Member", allMember)
-
-    let m_data_get = getData("Member")
-
-    m_data_get.map((data) => {
-        member_items.innerHTML +=`
-        <div class="col-md-3 member_items my-3">
-                <div class="card text-center">
-                    <img src = "${data.image}" class="card-img-top" alt="">
-                    <div class="card-body">
-                        <h4 class="m_name">${data.name}</h4>
-                        <h5 class="designation">${data.Desi}</h5>
-                        <h6 class="skill">${data.skill}</h6>
-                        <div class="social_media">
-                            <a href="${data.f_link}" class="facebook"><i class="fab fa-facebook-square"></i></a>
-                            <a href="${data.g_link}" class="github"><i class="fab fa-github-square"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `
-    })
-
-
-
-
-// age calculator
+// ================= age calculator with leapyear ===============
 
 const months = [31,28,31,30,31,30,31,31,30,31,30,31]
 
-
 const submit_2 = document.querySelector('.submit');
-
 
 function ageCal(){
 
@@ -315,3 +129,180 @@ function leapChecker(year){
         months[1] = 28;
     }
 }
+
+
+// ================= Add Products ================== //
+const add_product_btn = document.getElementById('add_product_btn');
+const submit = document.getElementById('products_form');
+const product_box = document.getElementById('products_add_box');
+const close_product = document.getElementById('add_p_close');
+const product_items = document.getElementById('product_items');
+
+
+add_product_btn.addEventListener('click', function() {
+product_box.style.display = "block"
+})
+
+close_product.addEventListener('click', function () {
+product_box.style.display = 'none'
+})
+
+submit.addEventListener('submit', function(e) {
+e.preventDefault();
+let title = this.querySelector('input[name="title"]');
+let cat = this.querySelectorAll('input[name="category"]:checked');
+let r_price = this.querySelector('input[name="r_price"]');
+let s_price = this.querySelector('input[name="s_price"]');
+let p_image = this.querySelector('input[name="p_image"]');
+
+
+let cat_arr = [];
+for (let i = 0; i < cat.length; i++) 
+{ cat_arr.push(cat[i].value); } 
+let product_arr=[]; 
+if (data_get("product")) { 
+    product_arr = data_get("product"); 
+}else{ 
+    product_arr=[]; 
+}
+    
+product_arr.push({ 
+    p_title : title.value,
+    cat : cat_arr, 
+    r_price : r_price.value, 
+    s_price : s_price.value, 
+    p_image : p_image.value }) 
+
+    data_send("product", product_arr) 
+    products()
+}) 
+
+    products() 
+
+function products(){ 
+
+    let product  = data_get("product"); 
+    let products_data = ''; 
+
+    product.map((p_data) => {
+    
+    let c_list = "";
+    p_data.cat.map((c_data) => {
+    c_list += '<span> '+ c_data +' </span>,'
+    })
+
+    products_data +=`
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <img src="${p_data.p_image}" class="card-img" width="100" height="200" object-fit="cover" alt="">
+                    <div class="card-body">
+                         ${c_list}
+                        <h5 class="text-center">${p_data.p_title}</h5>
+                        <div class="price my-2">
+                            <span class="regular_price">${p_data.r_price}</span>
+                            <span class="sale_price">${p_data.s_price}</span>
+                        </div>
+                        <button class="btn btn-primary">Add To Cart</button>
+                    </div>
+                </div>
+            </div> `
+    })
+
+    product_items.innerHTML = products_data;
+    }
+
+ // ================= Add Member ================== //
+
+const member_btn  = document.getElementById('member_btn')
+const add_m_close = document.getElementById('add_m_close')
+const add_member  = document.getElementById('member_form')
+const member_items = document.querySelector('#member-items')
+
+member_btn.addEventListener('click', function() {
+    m_add_box.style.display = "block"
+})
+
+add_m_close.addEventListener('click', function () {
+    m_add_box.style.display = 'none'
+})
+
+add_member.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    let name   = this.querySelector('input[name="name"]');
+    let desi   = this.querySelector('input[name="desi"]');
+    let skills = this.querySelectorAll('input[name="skill"]:checked');
+    let gender = this.querySelector('input[name="gender"]:checked');
+    let img    = this.querySelector('input[name="img"]');
+    let face   = this.querySelector('input[name="face"]');
+    let git    = this.querySelector('input[name="git"]');
+
+    let skill_arr = [];
+    for (let i = 0; i < skills.length; i++) { 
+        skill_arr.push(skills[i].value);
+    }
+
+
+    let dev_arr;
+
+    if(data_get("dev")){
+        dev_arr = data_get("dev") 
+    }else{
+        dev_arr = [];
+    }
+    dev_arr.push({
+        name   : name.value,
+        desi   : desi.value,
+        skill  : skill_arr,
+        gender : gender.value,
+        img    : img.value,
+        face   : face.value,
+        git    : git.value,
+
+    })  
+    data_send("dev",dev_arr)
+    
+    memberOutput()
+})
+
+memberOutput()
+
+function memberOutput(){
+    let dev_get = data_get("dev");
+    let m_data = "";
+    
+    dev_get.map(dat => {
+
+    let list = '';
+    dat.skill.map((lists) => {
+    list += '<li class="list-group-item">'+ lists +'</li>'
+    })
+
+    m_data +=`
+    <div class="col-md-4 my-3">
+        <div class="card">
+            <img src="${dat.img}" alt="" class="card-img" width="100" height="200" object-fit="cover">
+            <div class="card-body">
+                <h3 class = "text-center">${dat.name}</h3>
+                <h5 class = "text-center">${dat.desi}</h5>
+                <hr>
+                <h5>Skill</h5>
+                <ul class="list-group">
+                    ${list}
+                </ul>
+                <h5>Gender : ${dat.gender}</h5>
+                <div class="social-media">
+                    <span class="fb"><a href="${dat.face}"><i class="fab fa-facebook-square"></i></a></span>
+                    <span class="git"><a href="${dat.git}"><i class="fab fa-github-square"></i></a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    `
+    })
+    
+    member_items.innerHTML = m_data;
+    
+    }
+    
+

@@ -1,51 +1,20 @@
 
 /**
- * Data storage localstorage
+ * Data Send
  * @param {*} key 
- * @param {*} arr 
- * @returns 
+ * @param {*} dev 
  */
-
-function dataSend (key, arr){
-
-    let data = JSON.stringify(arr)
-    localStorage.setItem(key, data)
-    return true;
-}
+function data_send(key, dev){
+    let data = JSON.stringify(dev);
+    localStorage.setItem(key, data)}
 
 /**
- * data get from localstorage
+ * Data Get From local Storage
  * @param {*} key 
  * @returns 
  */
-function getData (key){
-    let data = localStorage.getItem(key);
-    return JSON.parse(data)
+function data_get(key){
+    let l_data = localStorage.getItem(key);
+    return l_data ? JSON.parse(l_data) : l_data;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function dataSend (key , arr){
-
-//     let data = JSON.stringify(arr);
-//     localStorage.setItem(key , data)
-//     // return true;
-// }
-
-// function dataGet(arr){
-//      let data_2 = localStorage.getItem(arr);
-//      return JSON.parse(data_2)
-// }

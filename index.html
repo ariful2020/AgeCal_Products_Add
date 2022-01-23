@@ -73,12 +73,11 @@
     </section>
     <hr>
     <!--========================== Products ================ -->
-    <section class="second_section my-3">
+    <section class="second_section my-5">
         <div class="container">
             <div class="row">
                 <h2 class="text-center text-uppercase mb-5">Products Section</h2>
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <button class="btn btn-primary mb-3" id="add_product_btn">Add New Product</button>
                     <div class="card p-4" id="products_add_box">
                         <div class="row">
@@ -91,25 +90,31 @@
                             <form class="" id="products_form">
                                 <div class="form-group">
                                     <label for="p_title">Product Title</label>
-                                    <input type="text" class="form-control" id="p_title">
+                                    <input type="text" class="form-control" id="p_title" name="title">
+                                </div>
+                                <div class="form-group my-1">
+                                    <label>Category:</label> <br>
+                                    <input type = "checkbox" id = "elect" name = "category" value="Electronics"> <label for = "elect">Electronics</label><br>
+                                    <input type = "checkbox" id = "grocery" name = "category" value="Grocery"> <label for = "grocery">Grocery</label><br>
+                                    <input type = "checkbox" id = "Cloth" name = "category" value="Cloth"> <label for = "Cloth">Cloth</label>
                                 </div>
                                 <div class="row my-2">
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="r_price">Regular Price</label>
-                                            <input type="text" class="form-control" id="r_price" placeholder="$">
+                                            <input type="text" class="form-control" name="r_price" id="r_price" placeholder="$">
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="s_price">Sale Price</label>
-                                            <input type="text" class="form-control" id="s_price" placeholder="$">
+                                            <input type="text" class="form-control" name="s_price" id="s_price" placeholder="$">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="p_image">Product Image Link</label>
-                                    <input type="text" class="form-control" id="p_image" placeholder="">
+                                    <input type="text" class="form-control" name="p_image" id="p_image" placeholder="">
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" class="btn btn-primary btn-block w-100 mt-2" id="p_image" value="Add Product">
@@ -118,20 +123,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3"></div>
+                <div class="col-md-8">
+                    <div class="row" id = "product_items">
+
+
+                    </div>
+                </div>
             </div>
-            <hr>
-            <div class="row p_list"> </div>
         </div>
-    </section>
+    </section >
     <hr>
     <!-- ========================== Member ======================== -->
     <section class="third_section my-5">
         <div class="container">
             <div class="row">
                 <h2 class="text-center text-uppercase mb-5">Member Section</h2>
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <button class="btn btn-primary mb-3" id="member_btn">Add New Member</button>
                     <div class="card p-4" id="m_add_box">
                         <div class="row">
@@ -144,37 +151,39 @@
                             <form class="" id="member_form">
                                 <div class="form-group">
                                     <label for="m_title">Member Name</label>
-                                    <input type="text" class="form-control" id="m_title">
+                                    <input type="text" class="form-control" id="m_title" name="name">
                                 </div>
-                                <div class="row my-2">
-                                    <div class="col-6">
                                         <div class="form-group">
                                             <label for="m_position">Designation</label>
-                                            <input type="text" class="form-control" id="m_position" placeholder="">
+                                            <input type="text" class="form-control" id="m_position" name="desi">
                                         </div>
-                                    </div>
-                                    <div class="col-6">
                                         <div class="form-group">
-                                            <label for="m_skill">Skill</label>
-                                            <input type="text" class="form-control" id="m_skill" placeholder="">
+                                            <label for=""><strong>Skill:</strong></label> <br>
+                                            <input type="checkbox" value = "React Devoloper" id="React"  name = "skill"> <label for = "React" value ="React">React Devoloper</label> <br>
+                                            <input type="checkbox" value = "PHP Devoloper" id="PHP"    name = "skill"> <label for = "PHP" value ="PHP">PHP Devoloper</label><br>
+                                            <input type="checkbox" value = "Python Devoloper" id="Python" name = "skill"> <label for = "Python" value ="Python">Python Devoloper</label><br>
+                                            <input type="checkbox" value = "Java Devoloper" id="Java"   name = "skill"> <label for = "Java" value ="Java">Java Devoloper</label>
                                         </div>
-                                    </div>
-                                </div>
+                                        <div class="form-group">
+                                            <label for="m_image"><strong>Gender:</strong></label> <br>
+                                            <input type="radio" id="male" name="gender" value="Male"> <label for="male">Male</label> <br>
+                                            <input type="radio" id="female" name="gender" value="Female"> <label for="female">Female</label>
+                                        </div>        
                                 <div class="form-group">
                                     <label for="m_image">Profile Image Link</label>
-                                    <input type="text" class="form-control" id="m_image" placeholder="">
+                                    <input type="text" class="form-control" id="m_image" name="img">
                                 </div>
                                 <div class="row my-2">
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="facebook">Facbook Link</label>
-                                            <input type="text" class="form-control" id="facebook" placeholder="">
+                                            <input type="text" class="form-control" id="facebook" name="face">
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="github">Github Link</label>
-                                            <input type="text" class="form-control" id="github" placeholder="">
+                                            <input type="text" class="form-control" id="github" name="git">
                                         </div>
                                     </div>
                                 </div>
@@ -185,10 +194,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3"></div>
-            </div>
-            <hr>
-            <div class="row member-items">
+                <div class="col-md-8">
+                    <div class="row" id = "member-items">
+
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -226,6 +236,8 @@
     <!-- Custom JS -->
     <script src="./js/function.js"></script>
     <script src="./js/app.js"></script>
+    
+
 
 </body>
 </html>

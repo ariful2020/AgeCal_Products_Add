@@ -62,7 +62,7 @@
 }
 
 /* Member */
-.github i, .facebook i {
+.git i, .fb i {
 	font-size: 30px;
 	margin: 10px 5px;
 }
@@ -81,4 +81,14 @@
 	font-weight: 600;
 	margin: 0 5px;
 	border-radius: 5px;
+}
+.list-group-item {
+	border: 0 !important;
+	padding: 0;
+}
+.social-media {
+	text-align: center;
+}
+.card-img {
+	border-bottom: 1px solid #ddd;
 }
