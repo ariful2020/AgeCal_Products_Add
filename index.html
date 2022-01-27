@@ -75,61 +75,69 @@
     <!--========================== Products ================ -->
     <section class="second_section my-5">
         <div class="container">
-            <div class="row">
-                <h2 class="text-center text-uppercase mb-5">Products Section</h2>
-                <div class="col-md-4">
-                    <button class="btn btn-primary mb-3" id="add_product_btn">Add New Product</button>
-                    <div class="card p-4" id="products_add_box">
-                        <div class="row">
-                            <div class="col-10">
-                                <h4 class="text-center text-uppercase">Product Add </h4>
+    <div class="row">
+        <div class="col-md-4 pt-3" id="left">
+            <button class="btn btn-success mb-4" id="add_product_btn">Add New Product</button>
+            <div class="card" id="add_product_box">
+                <div class="card-body">
+                    <div class="box-title d-flex mb-4">
+                        <h5 class="text-start">Add New Products</h5>
+                        <button type = "button" id="btn-close" class="btn-close text-end" aria-label="Close"></button>
+                    </div>
+                    <form action="" id="apply" class="sticky-top">
+                        <div class="form-group">
+                            <label for="title">Product Title</label>
+                            <input name="title" type="text" id="title" class="form-control">
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="Image">Image Link</label>
+                            <input name="img" type="text" id="Image" class="form-control">
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="desc">Short Description</label>
+                            <textarea name="desc" class="form-control" id="floatingTextarea"></textarea>
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="">Category</label> <br>
+                            <input value ="Category One" name="cate" type="checkbox" id="One">
+                            <label for="One">Category One</label> <br>
+                            <input value ="Category Two" name="cate" type="checkbox" id="Two">
+                            <label for="Two">Category Two</label> <br>  
+                            <input value ="Category Three" name="cate" type="checkbox" id="Three">
+                            <label for="Three">Category Three</label> <br>                
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="rPrice">Regular Price</label>
+                                    <input name="rPrice" id="rPrice" type="text" class="form-control" placeholder="$">
+                                </div>
                             </div>
-                            <div class="col-2"><button id="add_p_close" class="btn close">&times;</button></div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="sPrice">Sale Price</label>
+                                    <input name="sPrice" id="sPrice" type="text" class="form-control" placeholder="$">
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <form class="" id="products_form">
-                                <div class="form-group">
-                                    <label for="p_title">Product Title</label>
-                                    <input type="text" class="form-control" id="p_title" name="title">
-                                </div>
-                                <div class="form-group my-1">
-                                    <label>Category:</label> <br>
-                                    <input type = "checkbox" id = "elect" name = "category" value="Electronics"> <label for = "elect">Electronics</label><br>
-                                    <input type = "checkbox" id = "grocery" name = "category" value="Grocery"> <label for = "grocery">Grocery</label><br>
-                                    <input type = "checkbox" id = "Cloth" name = "category" value="Cloth"> <label for = "Cloth">Cloth</label>
-                                </div>
-                                <div class="row my-2">
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label for="r_price">Regular Price</label>
-                                            <input type="text" class="form-control" name="r_price" id="r_price" placeholder="$">
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label for="s_price">Sale Price</label>
-                                            <input type="text" class="form-control" name="s_price" id="s_price" placeholder="$">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="p_image">Product Image Link</label>
-                                    <input type="text" class="form-control" name="p_image" id="p_image" placeholder="">
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" class="btn btn-primary btn-block w-100 mt-2" id="p_image" value="Add Product">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="row" id = "product_items">
-
-
-                    </div>
+                            <input type="submit" class="btn btn-success w-100 my-1" value="Publish">
+                    </form>
                 </div>
             </div>
+        </div>
+        <div class="col-md-8 mt-5">
+            <div class="row mt-4">
+                <div class="col-md-12 text-end">
+                    <span id="list"><i class="fas fa-th-list"></i></span>
+                    <span id="grid"><i class="fas fa-th"></i></span>
+                </div>
+            </div>
+            <div class="row mt-3"  id="products_output">
+
+            </div>
+
+        </div>
+    </div>
         </div>
     </section >
     <hr>
@@ -139,7 +147,7 @@
             <div class="row">
                 <h2 class="text-center text-uppercase mb-5">Member Section</h2>
                 <div class="col-md-4">
-                    <button class="btn btn-primary mb-3" id="member_btn">Add New Member</button>
+                    <button class="btn btn-success mb-3" id="member_btn">Add New Member</button>
                     <div class="card p-4" id="m_add_box">
                         <div class="row">
                             <div class="col-10">
@@ -188,7 +196,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" class="btn btn-primary btn-block w-100 mt-2" id="m_btn" value="Add Member">
+                                    <input type="submit" class="btn btn-success btn-block w-100 mt-2" id="m_btn" value="Add Member">
                                 </div>
                             </form>
                         </div>

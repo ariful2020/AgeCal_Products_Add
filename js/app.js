@@ -82,9 +82,9 @@ let birthDatails = {
     year  :date_of_birth.getFullYear()
 }
 
-let currentYear = today.getFullYear();
+let currentYear  = today.getFullYear();
 let currentMonth = today.getMonth()+1;
-let currentDate = today.getDate();
+let currentDate  = today.getDate();
 
 leapChecker(currentYear);
 
@@ -132,84 +132,152 @@ function leapChecker(year){
 
 
 // ================= Add Products ================== //
+
+// const add_product_btn = document.getElementById('add_product_btn');
 const add_product_btn = document.getElementById('add_product_btn');
-const submit = document.getElementById('products_form');
-const product_box = document.getElementById('products_add_box');
-const close_product = document.getElementById('add_p_close');
-const product_items = document.getElementById('product_items');
+const add_product_box = document.getElementById('add_product_box');
+const btn_close       = document.getElementById('btn-close');
+const apply           = document.getElementById('apply');
+const products_output = document.getElementById('products_output');
+
+add_product_btn.addEventListener('click',function() {
+    add_product_box.style.transform="scaleY(1)"
+});
+btn_close.addEventListener('click',function() {
+    add_product_box.style.transform="scaleY(0)";
+});
+
+apply.addEventListener('submit', function(e) {
+
+    e.preventDefault();
+   let title  = this.querySelector('input[name="title"]').value;
+   let img    = this.querySelector('input[name="img"]').value;
+   let desc   = this.querySelector('textarea[name="desc"]').value;
+   let cat    = document.querySelectorAll('input[name="cate"]:checked');
+   let rPrice = this.querySelector('input[name="rPrice"]').value;
+   let sPrice = this.querySelector('input[name="sPrice"]').value;
+
+   
+   let rp;
+   let sp;
+
+   if (sPrice == ''){
+    rp = `${rPrice}$`;
+   }else{
+    rp =`<del class="del_price">${rPrice}$</del>`;
+   }
 
 
-add_product_btn.addEventListener('click', function() {
-product_box.style.display = "block"
+   if (sPrice == ''){
+    sp = `<span style="display:none">${sPrice}$</span>`
+   }else{
+    sp = `<span>${sPrice}$</span>`
+   }
+
+
+
+
+   let cat_arr=[];
+
+   for (let i = 0; i < cat.length; i++) {
+       cat_arr.push(cat[i].value)}
+       
+
+    let products_arr;
+    if(dataGet("product")){
+        products_arr = dataGet("product"); 
+    }else{
+        products_arr = [];
+    }
+
+products_arr.push({
+        title  : title,
+        img    : img,
+        desc   : desc,
+        cat    : cat_arr,
+        rPrice : rp,
+        sPrice : sp
+})
+   
+    if (rPrice == '') {
+        dataSend("Not", products_arr);   
+    }else {
+        dataSend("product", products_arr);
+    }
+
+    if (rPrice == '') {
+        alert ('Please Input Your Regular Price')    
+    }else{
+        product_grid()
+    }
+
+  
 })
 
-close_product.addEventListener('click', function () {
-product_box.style.display = 'none'
-})
-
-submit.addEventListener('submit', function(e) {
-e.preventDefault();
-let title = this.querySelector('input[name="title"]');
-let cat = this.querySelectorAll('input[name="category"]:checked');
-let r_price = this.querySelector('input[name="r_price"]');
-let s_price = this.querySelector('input[name="s_price"]');
-let p_image = this.querySelector('input[name="p_image"]');
-
-
-let cat_arr = [];
-for (let i = 0; i < cat.length; i++) 
-{ cat_arr.push(cat[i].value); } 
-let product_arr=[]; 
-if (data_get("product")) { 
-    product_arr = data_get("product"); 
-}else{ 
-    product_arr=[]; 
-}
+product_grid()
+function product_grid(){
+    let prodGet = dataGet("product");
+    let prod_grid= '';
     
-product_arr.push({ 
-    p_title : title.value,
-    cat : cat_arr, 
-    r_price : r_price.value, 
-    s_price : s_price.value, 
-    p_image : p_image.value }) 
-
-    data_send("product", product_arr) 
-    products()
-}) 
-
-    products() 
-
-function products(){ 
-
-    let product  = data_get("product"); 
-    let products_data = ''; 
-
-    product.map((p_data) => {
+    prodGet.map(data => {
     
-    let c_list = "";
-    p_data.cat.map((c_data) => {
-    c_list += '<span> '+ c_data +' </span>,'
+    let cat_show = '';
+    
+    data.cat.map((cat_data) => {
+    cat_show += `<span class="cat"> ${cat_data}</span>`
     })
-
-    products_data +=`
-            <div class="col-md-4">
-                <div class="card text-center">
-                    <img src="${p_data.p_image}" class="card-img" width="100" height="200" object-fit="cover" alt="">
-                    <div class="card-body">
-                         ${c_list}
-                        <h5 class="text-center">${p_data.p_title}</h5>
-                        <div class="price my-2">
-                            <span class="regular_price">${p_data.r_price}</span>
-                            <span class="sale_price">${p_data.s_price}</span>
+    prod_grid +=`
+   
+        <div class="col-md-4 mb-3" id="list_items">
+        <div id="list_grid">
+            <div class="card text-center product-item">
+                <div class="card-body">
+                    <div id="list_left">
+                        <div class="wishlist-addCard text-success">
+                            <i class="far fa-heart"></i>
+                            <i class="fas fa-cart-plus"></i>
                         </div>
-                        <button class="btn btn-primary">Add To Cart</button>
+                        <img class="card-img" object-fit="cover" width="200" height="150" src="${data.img}" alt="">
+                    </div>
+                    <div id="list_right">
+                        <h6 class="mt-4">${cat_show}</h6>
+                        <h3>${data.title}</h3>
+                        <div class="price">
+                            <span class="r_price">${data.rPrice}</span>
+                            <span class="s_price">${data.sPrice}</span>
+                        </div>
+                        <button class="btn btn-success mt-2">Add To Card</button>
                     </div>
                 </div>
-            </div> `
+            </div>
+        </div>
+    </div>
+    `
     })
-
-    product_items.innerHTML = products_data;
+    
+    products_output.innerHTML = prod_grid;
+    
     }
+    
+const list       = document.getElementById('list');
+const grid       = document.getElementById('grid');
+const list_grid  = document.getElementById('list-grid');
+const list_left  = document.getElementById('list-left');
+const list_right = document.getElementById('list_right');
+
+
+list.addEventListener('click', function(){
+    list_grid.classList.add("row")
+    list_left.classList.add("col-md-4")
+    list_right.classList.add("col-md-8")
+})
+grid.addEventListener('click', function(){
+    list_grid.classList.remove("row")
+    list_left.classList.remove("col-md-4")
+    list_right.classList.remove("col-md-8")
+})
+
+
 
  // ================= Add Member ================== //
 
@@ -219,11 +287,11 @@ const add_member  = document.getElementById('member_form')
 const member_items = document.querySelector('#member-items')
 
 member_btn.addEventListener('click', function() {
-    m_add_box.style.display = "block"
+    m_add_box.style.transform="scaleY(1)"
 })
 
 add_m_close.addEventListener('click', function () {
-    m_add_box.style.display = 'none'
+    m_add_box.style.transform="scaleY(0)"
 })
 
 add_member.addEventListener('submit', function(e) {
@@ -245,8 +313,8 @@ add_member.addEventListener('submit', function(e) {
 
     let dev_arr;
 
-    if(data_get("dev")){
-        dev_arr = data_get("dev") 
+    if(dataGet("dev")){
+        dev_arr = dataGet("dev") 
     }else{
         dev_arr = [];
     }
@@ -260,7 +328,7 @@ add_member.addEventListener('submit', function(e) {
         git    : git.value,
 
     })  
-    data_send("dev",dev_arr)
+    dataSend("dev",dev_arr)
     
     memberOutput()
 })
@@ -268,10 +336,11 @@ add_member.addEventListener('submit', function(e) {
 memberOutput()
 
 function memberOutput(){
-    let dev_get = data_get("dev");
-    let m_data = "";
+
+    let devGet = dataGet("dev");
+    let m_data  = "";
     
-    dev_get.map(dat => {
+    devGet.map(dat => {
 
     let list = '';
     dat.skill.map((lists) => {
@@ -292,8 +361,8 @@ function memberOutput(){
                 </ul>
                 <h5>Gender : ${dat.gender}</h5>
                 <div class="social-media">
-                    <span class="fb"><a href="${dat.face}"><i class="fab fa-facebook-square"></i></a></span>
-                    <span class="git"><a href="${dat.git}"><i class="fab fa-github-square"></i></a></span>
+                    <span class="fb"><a href="${dat.face}"><i class="fab fa-facebook-square text-success"></i></a></span>
+                    <span class="git"><a href="${dat.git}"><i class="fab fa-github-square text-success"></i></a></span>
                 </div>
             </div>
         </div>
