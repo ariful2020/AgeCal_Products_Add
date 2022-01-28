@@ -133,7 +133,6 @@ function leapChecker(year){
 
 // ================= Add Products ================== //
 
-// const add_product_btn = document.getElementById('add_product_btn');
 const add_product_btn = document.getElementById('add_product_btn');
 const add_product_box = document.getElementById('add_product_box');
 const btn_close       = document.getElementById('btn-close');
@@ -175,20 +174,19 @@ apply.addEventListener('submit', function(e) {
    }
 
 
-
-
    let cat_arr=[];
-
    for (let i = 0; i < cat.length; i++) {
        cat_arr.push(cat[i].value)}
        
 
     let products_arr;
+    
     if(dataGet("product")){
         products_arr = dataGet("product"); 
     }else{
         products_arr = [];
     }
+
 
 products_arr.push({
         title  : title,
@@ -211,71 +209,78 @@ products_arr.push({
         product_grid()
     }
 
-  
 })
 
 product_grid()
+
 function product_grid(){
     let prodGet = dataGet("product");
-    let prod_grid= '';
+    if(prodGet == null){
+
+        return false;
+
+    }else{
+
+        let prod_grid= '';
     
-    prodGet.map(data => {
+        prodGet.map(data => {
+        
+        let cat_show = '';
+        data.cat.map((cat_data) => {
+        cat_show += `<span class="cat"> ${cat_data}</span>`
+        })
     
-    let cat_show = '';
-    
-    data.cat.map((cat_data) => {
-    cat_show += `<span class="cat"> ${cat_data}</span>`
-    })
-    prod_grid +=`
-   
-        <div class="col-md-4 mb-3" id="list_items">
-        <div id="list_grid">
-            <div class="card text-center product-item">
-                <div class="card-body">
-                    <div id="list_left">
-                        <div class="wishlist-addCard text-success">
-                            <i class="far fa-heart"></i>
-                            <i class="fas fa-cart-plus"></i>
+        prod_grid +=
+        `<div class="col-md-4 mb-3" id="list_items">
+            <div id="list_grid">
+                <div class="card text-center product-item">
+                    <div class="card-body">
+                        <div id="list_left">
+                            <div class="wishlist-addCard text-success">
+                                <i class="far fa-heart"></i>
+                                <i class="fas fa-cart-plus"></i>
+                            </div>
+                            <img class="card-img" object-fit="cover" width="200" height="150" src="${data.img}" alt="">
                         </div>
-                        <img class="card-img" object-fit="cover" width="200" height="150" src="${data.img}" alt="">
-                    </div>
-                    <div id="list_right">
-                        <h6 class="mt-4">${cat_show}</h6>
-                        <h3>${data.title}</h3>
-                        <div class="price">
-                            <span class="r_price">${data.rPrice}</span>
-                            <span class="s_price">${data.sPrice}</span>
+                        <div id="list_right">
+                            <h6 class="mt-4">${cat_show}</h6>
+                            <h3>${data.title}</h3>
+                            <div class="price">
+                                <span class="r_price">${data.rPrice}</span>
+                                <span class="s_price">${data.sPrice}</span>
+                            </div>
+                            <button class="btn btn-success mt-2">Add To Card</button>
                         </div>
-                        <button class="btn btn-success mt-2">Add To Card</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    `
-    })
-    
-    products_output.innerHTML = prod_grid;
-    
+        `
+        })
+        
+        products_output.innerHTML = prod_grid;
+        
+        }
     }
     
-const list       = document.getElementById('list');
-const grid       = document.getElementById('grid');
-const list_grid  = document.getElementById('list-grid');
-const list_left  = document.getElementById('list-left');
-const list_right = document.getElementById('list_right');
+    
+// const list       = document.getElementById('list');
+// const grid       = document.getElementById('grid');
+// const list_grid  = document.getElementById('list-grid');
+// const list_left  = document.getElementById('list-left');
+// const list_right = document.getElementById('list_right');
 
 
-list.addEventListener('click', function(){
-    list_grid.classList.add("row")
-    list_left.classList.add("col-md-4")
-    list_right.classList.add("col-md-8")
-})
-grid.addEventListener('click', function(){
-    list_grid.classList.remove("row")
-    list_left.classList.remove("col-md-4")
-    list_right.classList.remove("col-md-8")
-})
+// list.addEventListener('click', function(){
+//     list_grid.classList.add("row")
+//     list_left.classList.add("col-md-4")
+//     list_right.classList.add("col-md-8")
+// })
+// grid.addEventListener('click', function(){
+//     list_grid.classList.remove("row")
+//     list_left.classList.remove("col-md-4")
+//     list_right.classList.remove("col-md-8")
+// })
 
 
 
@@ -338,40 +343,45 @@ memberOutput()
 function memberOutput(){
 
     let devGet = dataGet("dev");
-    let m_data  = "";
+    if (devGet == null) {
+        return false;
+    }else{
+        let m_data  = "";
     
-    devGet.map(dat => {
-
-    let list = '';
-    dat.skill.map((lists) => {
-    list += '<li class="list-group-item">'+ lists +'</li>'
-    })
-
-    m_data +=`
-    <div class="col-md-4 my-3">
-        <div class="card">
-            <img src="${dat.img}" alt="" class="card-img" width="100" height="200" object-fit="cover">
-            <div class="card-body">
-                <h3 class = "text-center">${dat.name}</h3>
-                <h5 class = "text-center">${dat.desi}</h5>
-                <hr>
-                <h5>Skill</h5>
-                <ul class="list-group">
-                    ${list}
-                </ul>
-                <h5>Gender : ${dat.gender}</h5>
-                <div class="social-media">
-                    <span class="fb"><a href="${dat.face}"><i class="fab fa-facebook-square text-success"></i></a></span>
-                    <span class="git"><a href="${dat.git}"><i class="fab fa-github-square text-success"></i></a></span>
+        devGet.map(dat => {
+    
+        let list = '';
+        dat.skill.map((lists) => {
+        list += '<li class="list-group-item">'+ lists +'</li>'
+        })
+    
+        m_data +=`
+        <div class="col-md-4 my-3">
+            <div class="card">
+                <img src="${dat.img}" alt="" class="card-img" width="100" height="200" object-fit="cover">
+                <div class="card-body">
+                    <h3 class = "text-center">${dat.name}</h3>
+                    <h5 class = "text-center">${dat.desi}</h5>
+                    <hr>
+                    <h5>Skill</h5>
+                    <ul class="list-group">
+                        ${list}
+                    </ul>
+                    <h5>Gender : ${dat.gender}</h5>
+                    <div class="social-media">
+                        <span class="fb"><a href="${dat.face}"><i class="fab fa-facebook-square text-success"></i></a></span>
+                        <span class="git"><a href="${dat.git}"><i class="fab fa-github-square text-success"></i></a></span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    `
-    })
-    
-    member_items.innerHTML = m_data;
-    
+        `
+        })
+        
+        member_items.innerHTML = m_data;
+        
+        }
     }
+    
     
 
